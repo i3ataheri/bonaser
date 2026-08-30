@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#f8f2e4">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0e1310">
 <meta name="description" content="منيو حلب الشهباء — فلافل وشاورما على أصولها: شاورما شامي، فلافل، مقبلات، بطاطس، عصيرات وإضافات.">
 
 <title>حلب الشهباء — المنيو</title>
@@ -20,38 +20,42 @@
 
 <style>
 /* =========================================================
-   حلب الشهباء — المنيو
+   حلب الشهباء — المنيو  (تصميم ليلي فاخر)
+   خلفية داكنة · ذهبي عميق · أخضر خافت · خطوط رفيعة
 ========================================================= */
 
 :root{
-    --cream:#f8f2e4;
-    --cream-2:#f1e8d3;
+    --night:#0e1310;
+    --night-2:#0a0e0c;
+    --night-3:#141b17;
 
-    --ink:#33291f;
-    --ink-soft:#5a4b3a;
+    --panel:#161e19;
+    --panel-2:#1b241e;
+    --panel-3:#202b23;
 
-    --brown:#3a2c1c;
-    --brown-deep:#241a10;
+    --line:rgba(201,168,96,.16);
+    --line-soft:rgba(201,168,96,.08);
 
-    --gold:#d39a3a;
-    --gold-light:#ecbc62;
-    --gold-deep:#a9772a;
+    --cream:#f3e9d2;
+    --cream-dim:#cfc2a4;
 
-    --green:#5f7443;
-    --green-deep:#41542e;
+    --gold:#d8b56b;
+    --gold-2:#efd391;
+    --gold-3:#b99345;
+    --gold-dim:#8a7037;
 
-    --orange:#d96832;
+    --green:#4f6b3d;
+    --green-2:#6c8d54;
 
-    --white:#fffdf6;
+    --blood:#c8643b;
 
-    --muted:#857662;
-    --muted-2:#6f6150;
+    --muted:#9a917b;
+    --muted-2:#7d7663;
 
-    --border:rgba(63,46,30,.10);
-    --glass:rgba(255,253,246,.66);
+    --txt:#ede4cf;
+    --txt-2:#c6bca2;
 
-    --shadow:0 22px 60px rgba(58,44,28,.12);
-    --shadow-sm:0 10px 28px rgba(58,44,28,.09);
+    --serif:"Tajawal", system-ui, "Segoe UI", Tahoma, sans-serif;
 }
 
 *{
@@ -61,226 +65,193 @@
 }
 
 html{
-    scroll-behavior:smooth;
-    scroll-padding-top:150px;
-}
-
-html,
-body{
     overflow-x:clip;
 }
 
-body{
-    font-family:"Tajawal",sans-serif;
+html.is-scrolling *{
+    animation-play-state:paused !important;
+}
 
-    color:var(--ink);
+html,body{
+    min-height:100%;
+}
+
+body{
+    font-family:var(--serif);
+    font-weight:400;
 
     background:
-        radial-gradient(circle at 88% 4%, rgba(211,154,58,.14), transparent 26%),
-        radial-gradient(circle at 6% 65%, rgba(95,116,67,.10), transparent 30%),
-        var(--cream);
+        radial-gradient(1200px 700px at 85% -10%, rgba(27,38,31,.9), transparent 60%),
+        radial-gradient(900px 600px at -10% 110%, rgba(23,33,26,.85), transparent 60%),
+        var(--night);
 
-    min-height:100vh;
+    color:var(--txt);
 
-    -webkit-tap-highlight-color:transparent;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
 }
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+b{ font-weight:800; }
 
 ::selection{
-    background:rgba(211,154,58,.22);
+    background:var(--gold);
+    color:var(--night);
 }
 
-/* ---------- background shapes ---------- */
-
-.bg-shape{
-    position:fixed;
-
-    border-radius:50%;
-
-    pointer-events:none;
-    z-index:-1;
+body::-webkit-scrollbar{
+    width:10px;
+}
+body::-webkit-scrollbar-track{
+    background:var(--night-2);
+}
+body::-webkit-scrollbar-thumb{
+    background:var(--gold-dim);
+    border-radius:99px;
+    border:2px solid var(--night-2);
 }
 
-.bg-shape.one{
-    width:420px;
-    height:420px;
-
-    background:radial-gradient(circle, rgba(211,154,58,.22), transparent 66%);
-
-    top:-190px;
-    right:-120px;
+.shell{
+    width:min(1080px, calc(100% - 34px));
+    margin-inline:auto;
 }
 
-.bg-shape.two{
-    width:380px;
-    height:380px;
+/* ---------- ornament / vignette ---------- */
 
-    background:radial-gradient(circle, rgba(95,116,67,.18), transparent 68%);
-
-    bottom:-200px;
-    left:-120px;
-}
-
-.noise{
+body::before{
+    content:"";
     position:fixed;
     inset:0;
-    z-index:-1;
-    opacity:.03;
+    z-index:0;
+
+    background:
+        linear-gradient(rgba(201,168,96,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,96,.035) 1px, transparent 1px);
+    background-size:52px 52px;
+
     pointer-events:none;
-    background-image:radial-gradient(rgba(50,35,20,.85) .6px, transparent .6px);
-    background-size:5px 5px;
 }
 
-/* ---------- progress ---------- */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
 
-.progress{
+    background:radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(4,6,5,.7) 100%);
+
+    pointer-events:none;
+}
+
+/* ---------- top bar ---------- */
+
+.topbar{
     position:fixed;
     top:0;
-    inset-inline:0;
-    height:3px;
+    left:0;
+    right:0;
     z-index:90;
-    pointer-events:none;
+
+    background:linear-gradient(rgba(10,14,12,.92), rgba(10,14,12,.72));
+
+    border-bottom:1px solid var(--line-soft);
+
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+
+    transition:box-shadow .3s ease, background .3s ease;
 }
 
-.progress-fill{
-    width:100%;
-    height:100%;
-    background:linear-gradient(90deg, var(--gold), var(--gold-light));
-    transform-origin:100% 50%;
-    animation:progressBar linear both;
-    animation-timeline:scroll(root);
+.topbar.is-scrolled{
+    background:rgba(10,14,12,.96);
+    box-shadow:0 14px 34px rgba(0,0,0,.45);
 }
 
-@keyframes progressBar{
-    to{ transform:scaleX(1); }
-}
-
-/* ---------- header ---------- */
-
-header{
-    position:sticky;
-    top:14px;
-    z-index:80;
-
-    width:min(1180px, calc(100% - 34px));
-
-    margin:18px auto 0;
-
-    padding:12px 14px;
-
+.topbar-inner{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:14px;
+    gap:16px;
 
-    background:rgba(255,253,246,.72);
-
-    border:1px solid rgba(255,255,255,.85);
-    border-radius:20px;
-
-    box-shadow:0 12px 38px rgba(58,44,28,.07);
-
-    transition:box-shadow .3s ease;
-
-    animation:headerIn .8s ease both;
-}
-
-header.is-scrolled{
-    box-shadow:0 16px 44px rgba(58,44,28,.13);
-}
-
-@keyframes headerIn{
-    from{
-        opacity:0;
-        transform:translateY(-20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    padding:12px 0;
 }
 
 .brand{
     display:flex;
     align-items:center;
     gap:12px;
-
-    text-decoration:none;
-
-    color:var(--ink);
 }
 
 .brand-mark{
-    width:46px;
-    height:46px;
+    width:40px;
+    height:40px;
+    flex:none;
 
     display:grid;
     place-items:center;
 
-    border-radius:14px;
+    border-radius:12px;
 
-    background:
-        linear-gradient(145deg, var(--gold-light), var(--gold-deep));
+    background:linear-gradient(145deg, #2a3a2c, #18221a);
 
-    box-shadow:
-        0 9px 22px rgba(169,119,42,.25),
-        inset 0 1px rgba(255,255,255,.5);
+    border:1px solid var(--line);
+
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.4);
 }
 
 .brand-mark img{
     width:22px;
     height:22px;
-
-    filter:drop-shadow(0 2px 3px rgba(0,0,0,.18));
+    filter:drop-shadow(0 0 6px rgba(216,181,107,.35));
 }
 
 .brand-text{
-    line-height:1.2;
+    display:flex;
+    flex-direction:column;
+    line-height:1.25;
 }
 
 .brand-text strong{
-    display:block;
-
-    font-size:17px;
+    font-size:16px;
     font-weight:900;
-
-    color:var(--brown-deep);
+    letter-spacing:.2px;
+    color:var(--cream);
 }
 
 .brand-text span{
-    display:block;
-
-    margin-top:3px;
-
-    font-size:9px;
-
+    font-size:11px;
     color:var(--muted);
 }
 
 .header-actions{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:10px;
 }
 
 .header-link{
-    text-decoration:none;
+    font-size:13px;
+    font-weight:500;
+    color:var(--txt-2);
 
-    font-size:10px;
-    font-weight:700;
+    padding:7px 12px;
+    border-radius:99px;
 
-    color:var(--muted-2);
-
-    padding:10px 13px;
-
-    border-radius:12px;
-
-    transition:.3s ease;
+    transition:color .25s ease, background .25s ease;
 }
 
 .header-link:hover{
-    color:var(--gold-deep);
-
-    background:rgba(211,154,58,.10);
+    color:var(--gold-2);
+    background:rgba(216,181,107,.08);
 }
 
 .order-btn{
@@ -288,22 +259,26 @@ header.is-scrolled{
     align-items:center;
     gap:7px;
 
-    padding:11px 15px;
+    padding:9px 16px;
 
-    border-radius:12px;
+    border-radius:99px;
 
-    text-decoration:none;
+    font-size:13px;
+    font-weight:700;
+    color:var(--night);
 
-    color:#fff;
+    background:linear-gradient(135deg, var(--gold-2), var(--gold) 45%, var(--gold-3));
+    border:1px solid rgba(255,225,160,.5);
 
-    font-size:10px;
-    font-weight:800;
+    box-shadow:0 8px 22px rgba(216,181,107,.28), inset 0 1px 0 rgba(255,255,255,.35);
 
-    background:linear-gradient(135deg, var(--green), var(--green-deep));
+    transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
 
-    box-shadow:0 10px 22px rgba(95,116,67,.28);
-
-    transition:.35s ease;
+.order-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.06);
+    box-shadow:0 12px 28px rgba(216,181,107,.38), inset 0 1px 0 rgba(255,255,255,.35);
 }
 
 .order-btn .icon{
@@ -311,1083 +286,753 @@ header.is-scrolled{
     height:15px;
 }
 
-.order-btn:hover{
-    transform:translateY(-3px);
-
-    box-shadow:0 15px 30px rgba(95,116,67,.34);
-}
-
 /* ---------- hero ---------- */
 
 .hero{
-    width:min(1100px, calc(100% - 34px));
+    position:relative;
+    z-index:1;
 
-    margin:auto;
-
-    padding:62px 0 38px;
+    padding:150px 0 42px;
 
     text-align:center;
-
-    animation:heroIn 1s .15s ease both;
 }
 
-@keyframes heroIn{
-    from{
-        opacity:0;
-        transform:translateY(26px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.hero-badge{
+.kicker{
     display:inline-flex;
     align-items:center;
-    gap:8px;
+    gap:10px;
 
-    padding:8px 14px;
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:.5px;
+    color:var(--gold-2);
 
-    border-radius:100px;
+    padding:8px 18px;
+    border-radius:99px;
 
-    background:rgba(95,116,67,.09);
+    border:1px solid var(--line);
 
-    border:1px solid rgba(95,116,67,.14);
+    background:rgba(216,181,107,.06);
 
-    color:var(--green);
-
-    font-size:10px;
-    font-weight:600;
-
-    margin-bottom:22px;
+    margin-bottom:26px;
 }
 
-.hero-badge i{
+.kicker i{
     width:6px;
     height:6px;
 
     border-radius:50%;
-
     background:var(--gold);
 
-    box-shadow:0 0 0 5px rgba(211,154,58,.12);
-
-    animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-    50%{
-        box-shadow:0 0 0 8px rgba(211,154,58,.03);
-    }
+    box-shadow:0 0 10px rgba(216,181,107,.8);
 }
 
 .hero h1{
-    font-size:clamp(56px, 9vw, 104px);
-
-    line-height:.95;
-
+    font-size:clamp(40px, 8vw, 78px);
     font-weight:900;
-
-    letter-spacing:-2px;
-
-    color:var(--ink);
+    line-height:1.1;
+    color:var(--cream);
 }
 
 .hero h1 span{
-    background:
-        linear-gradient(120deg, var(--gold-light), var(--gold-deep));
+    display:block;
 
+    background:linear-gradient(120deg, var(--gold-2), var(--gold) 50%, var(--gold-3));
     -webkit-background-clip:text;
     background-clip:text;
-
     color:transparent;
+
+    filter:drop-shadow(0 4px 22px rgba(216,181,107,.18));
+}
+
+.hero .rule{
+    width:74px;
+    height:2px;
+
+    margin:26px auto 22px;
+
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
 .hero .sub{
-    max-width:560px;
+    max-width:520px;
+    margin-inline:auto;
 
-    margin:18px auto 0;
-
-    color:var(--muted-2);
-
-    font-size:13px;
-    font-weight:600;
-
-    line-height:2.1;
+    font-size:15px;
+    color:var(--muted);
 }
 
 .hero .sub b{
-    color:var(--gold-deep);
-}
-
-.hero-split{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-
-    margin-top:12px;
-}
-
-.hero-split .seal{
-    font-size:34px;
-
-    filter:drop-shadow(0 8px 14px rgba(58,44,28,.18));
-
-    animation:sealSpin 9s linear infinite;
-}
-
-@keyframes sealSpin{
-    to{ transform:rotate(360deg); }
-}
-
-.hero-split small{
-    color:var(--muted);
-
-    font-size:11px;
-    font-weight:600;
-
-    line-height:1.8;
-
-    text-align:justify;
+    color:var(--gold-2);
 }
 
 /* ---------- search ---------- */
 
 .search-box{
-    width:min(600px, 100%);
-
-    margin:30px auto 0;
-
     position:relative;
+    z-index:1;
+
+    width:min(520px, 100%);
+    margin:34px auto 0;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:6px 8px;
+
+    border-radius:99px;
+
+    background:linear-gradient(145deg, var(--panel), var(--night-3));
+
+    border:1px solid var(--line);
+
+    box-shadow:0 16px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+
+    transition:border-color .25s ease, box-shadow .25s ease;
+}
+
+.search-box:focus-within{
+    border-color:var(--gold);
+    box-shadow:0 16px 40px rgba(0,0,0,.45), 0 0 0 4px rgba(216,181,107,.12);
+}
+
+.search-icon{
+    color:var(--gold);
+    font-size:20px;
+    line-height:1;
+    padding-inline-start:8px;
+    user-select:none;
 }
 
 .search-box input{
-    width:100%;
+    flex:1;
+    min-width:0;
 
-    height:56px;
-
-    padding:0 52px 0 46px;
-
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
+    background:transparent;
+    border:none;
     outline:none;
 
-    background:rgba(255,253,246,.75);
-
-    color:var(--ink);
-
+    color:var(--txt);
     font-family:inherit;
-    font-size:11px;
-    font-weight:600;
+    font-size:14px;
 
-    transition:.3s ease;
+    padding:9px 0;
 }
 
-.search-box input:focus{
-    border-color:rgba(211,154,58,.4);
-
-    box-shadow:0 12px 32px rgba(211,154,58,.10);
-}
-
-.search-box .search-icon{
-    position:absolute;
-    right:19px;
-    top:50%;
-
-    transform:translateY(-50%);
-
-    color:var(--gold-deep);
-
-    font-size:17px;
-}
-
-.search-box .clear-btn{
-    position:absolute;
-    left:14px;
-    top:50%;
-
-    transform:translateY(-50%);
-
-    width:26px;
-    height:26px;
-
-    border:0;
-    border-radius:50%;
-
-    background:rgba(63,46,30,.07);
-
+.search-box input::placeholder{
     color:var(--muted-2);
+}
 
-    font-size:12px;
+.clear-btn{
+    width:30px;
+    height:30px;
+    flex:none;
 
+    display:grid;
+    place-items:center;
+
+    border:none;
+    border-radius:50%;
     cursor:pointer;
 
-    display:none;
+    font-size:13px;
+    color:var(--txt-2);
 
-    align-items:center;
-    justify-content:center;
+    background:rgba(255,255,255,.06);
 
-    transition:.25s ease;
+    opacity:0;
+    visibility:hidden;
+    transform:scale(.8);
+
+    transition:opacity .2s ease, visibility .2s ease, transform .2s ease, background .2s ease;
 }
 
-.search-box .clear-btn.visible{
-    display:flex;
+.clear-btn.visible{
+    opacity:1;
+    visibility:visible;
+    transform:scale(1);
 }
 
-.search-box .clear-btn:hover{
-    background:rgba(63,46,30,.14);
+.clear-btn:hover{
+    background:rgba(255,255,255,.12);
 }
 
 /* ---------- categories ---------- */
 
-.categories-wrap{
+.cats{
     position:sticky;
+    top:64px;
+    z-index:60;
 
-    top:104px;
+    padding:16px 0 20px;
 
-    z-index:70;
-
-    width:100%;
-
-    margin-bottom:40px;
+    background:linear-gradient(rgba(14,19,16,.95), rgba(14,19,16,.6));
 }
 
-.categories{
-    width:min(1000px, calc(100% - 30px));
-
-    margin:auto;
-
-    padding:8px;
-
+.cats-inner{
     display:flex;
-
-    gap:6px;
+    gap:8px;
 
     overflow-x:auto;
 
     scrollbar-width:none;
-
-    background:rgba(255,253,246,.9);
-
-    border:1px solid rgba(255,255,255,.9);
-
-    border-radius:18px;
-
-    box-shadow:0 12px 36px rgba(58,44,28,.08);
 }
 
-.categories::-webkit-scrollbar{
+.cats-inner::-webkit-scrollbar{
     display:none;
 }
 
-.category-btn{
-    flex:0 0 auto;
+.cat-btn{
+    flex:none;
 
     display:inline-flex;
     align-items:center;
     gap:7px;
 
-    border:0;
+    padding:10px 18px;
 
-    padding:10px 16px;
-
-    border-radius:12px;
-
-    background:transparent;
-
-    color:var(--muted-2);
+    border-radius:99px;
 
     font-family:inherit;
-    font-size:10px;
-    font-weight:700;
+    font-size:13px;
+    font-weight:600;
+    color:var(--txt-2);
+
+    background:var(--panel);
+
+    border:1px solid var(--line-soft);
 
     cursor:pointer;
 
-    transition:.3s ease;
+    transition:color .25s ease, background .25s ease, border-color .25s ease, transform .25s ease;
 }
 
-.category-btn .em{
-    font-size:14px;
+.cat-btn .em{
+    font-size:15px;
 }
 
-.category-btn:hover{
-    color:var(--gold-deep);
-
-    background:rgba(211,154,58,.09);
+.cat-btn:hover{
+    color:var(--cream);
+    border-color:var(--line);
+    transform:translateY(-1px);
 }
 
-.category-btn.active{
-    color:#fff;
+.cat-btn.active{
+    color:var(--night);
 
-    background:linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+    background:linear-gradient(135deg, var(--gold-2), var(--gold) 50%, var(--gold-3));
 
-    box-shadow:0 8px 20px rgba(169,119,42,.26);
+    border-color:transparent;
+
+    box-shadow:0 8px 22px rgba(216,181,107,.3);
 }
 
-/* ---------- menu ---------- */
+/* ---------- menu sections ---------- */
 
 .menu{
-    width:min(1100px, calc(100% - 34px));
+    position:relative;
+    z-index:1;
 
-    margin:auto;
+    padding-bottom:20px;
 }
 
-.menu-section{
-    margin-bottom:68px;
+.section{
+    scroll-margin-top:150px;
 
-    opacity:0;
-    transform:translateY(26px);
-
-    transition:opacity .7s ease, transform .7s ease;
+    padding:34px 0 8px;
 }
 
-.menu-section.in{
-    opacity:1;
-    transform:translateY(0);
-}
-
-.no-js .menu-section{
-    opacity:1;
-    transform:none;
-}
-
-/* section heading */
-
-.section-heading{
+.section-head{
     display:flex;
     align-items:center;
-
     gap:16px;
 
-    margin-bottom:22px;
+    margin-bottom:30px;
 }
 
-.section-heading-main{
+.section-count{
+    flex:none;
+
+    font-family:var(--serif);
+    font-size:15px;
+    font-weight:800;
+    letter-spacing:1px;
+
+    color:var(--gold);
+
+    padding:9px 13px;
+    border-radius:10px;
+
+    border:1px solid var(--line);
+
+    background:rgba(216,181,107,.05);
+}
+
+.section-head-main{
     display:flex;
     align-items:center;
     gap:13px;
 }
 
-.section-count{
-    color:var(--gold);
-
-    font-size:11px;
-    font-weight:900;
-
-    letter-spacing:1px;
+.section-head-main .em{
+    font-size:26px;
+    line-height:1;
 }
 
-.section-icon{
-    width:46px;
-    height:46px;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:14px;
-
-    background:rgba(211,154,58,.10);
-
-    border:1px solid rgba(211,154,58,.14);
-
-    font-size:21px;
-}
-
-.section-heading h2{
+.section-head-main h2{
     font-size:24px;
     font-weight:900;
-
-    color:var(--brown-deep);
+    letter-spacing:.2px;
+    color:var(--cream);
 }
 
-.section-heading p{
-    margin-top:3px;
-
+.section-head-main p{
+    font-size:13px;
     color:var(--muted);
-
-    font-size:9px;
-    font-weight:600;
 }
 
 .section-line{
-    height:1px;
     flex:1;
+    height:1px;
 
-    max-width:340px;
-
-    background:
-        linear-gradient(90deg, transparent, rgba(211,154,58,.22));
+    background:linear-gradient(90deg, var(--line-soft), transparent);
 }
 
-/* item grid */
+/* ---------- items ---------- */
 
 .items{
     display:grid;
-
-    grid-template-columns:repeat(3, 1fr);
-
+    grid-template-columns:repeat(2, 1fr);
     gap:14px;
 }
-
-/* item card */
 
 .item{
     position:relative;
 
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:18px 20px;
+
+    border-radius:16px;
+
+    background:linear-gradient(160deg, var(--panel), var(--night-3));
+
+    border:1px solid var(--line-soft);
+
+    box-shadow:0 14px 34px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.03);
+
     overflow:hidden;
 
-    padding:20px;
-
-    min-height:150px;
-
-    border-radius:22px;
-
-    background:rgba(255,253,246,.7);
-
-    border:1px solid var(--border);
-
-    box-shadow:0 8px 28px rgba(58,44,28,.04);
-
-    transition:
-        transform .4s ease,
-        box-shadow .4s ease,
-        background .4s ease;
-
     opacity:0;
-    transform:translateY(22px) scale(.985);
+    transform:translateY(18px);
 
     transition:
-        transform .5s cubic-bezier(.2,.7,.3,1),
-        box-shadow .4s ease,
-        background .4s ease,
-        opacity .5s ease;
-
-    animation-delay:calc(var(--i, 0) * 60ms);
+        opacity .5s ease,
+        transform .5s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
 }
 
 .item.in{
     opacity:1;
-    transform:translateY(0) scale(1);
+    transform:translateY(0);
 }
 
-.no-js .item{
-    opacity:1;
-    transform:none;
+.item:hover{
+    border-color:var(--line);
+    transform:translateY(-2px);
+    box-shadow:0 20px 40px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.04);
 }
 
 .item::before{
     content:"";
-
     position:absolute;
-
     top:0;
-    inset-inline:16px;
+    bottom:0;
 
-    height:2px;
+    inset-inline-start:0;
 
-    border-radius:0 0 4px 4px;
+    width:3px;
 
-    background:linear-gradient(90deg, var(--gold-light), transparent);
+    background:linear-gradient(180deg, var(--gold), transparent);
 
     opacity:0;
 
-    transition:.35s ease;
-}
-
-.item:hover{
-    transform:translateY(-7px);
-
-    background:rgba(255,253,246,.94);
-
-    box-shadow:0 20px 44px rgba(58,44,28,.11);
+    transition:opacity .3s ease;
 }
 
 .item:hover::before{
     opacity:1;
 }
 
-.item::after{
-    content:"";
-    position:absolute;
+.item-ico{
+    width:52px;
+    height:52px;
+    flex:none;
 
-    width:110px;
-    height:110px;
+    display:grid;
+    place-items:center;
 
-    border-radius:50%;
+    border-radius:13px;
 
-    background:radial-gradient(circle, rgba(211,154,58,.10), transparent 60%);
+    background:rgba(216,181,107,.08);
 
-    left:-45px;
-    bottom:-45px;
-
-    transition:.45s ease;
+    border:1px solid var(--line-soft);
 }
 
-.item:hover::after{
-    transform:scale(1.6);
+.item-ico img{
+    width:32px;
+    height:32px;
+    object-fit:contain;
 }
 
-.item-top{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-start;
-
-    gap:10px;
-
+.item-body{
     flex:1;
+    min-width:0;
 }
 
-.item-info h3{
-    font-size:14px;
-    font-weight:900;
+.item-body h3{
+    font-size:16px;
+    font-weight:800;
+    color:var(--cream);
 
-    color:var(--ink);
-
-    margin-bottom:6px;
+    margin-bottom:3px;
 }
 
-.item-info p{
+.item-body p{
+    font-size:12px;
     color:var(--muted);
-
-    font-size:9px;
-
-    line-height:1.85;
 }
 
-.price{
-    flex:0 0 auto;
+.item-price{
+    display:flex;
+    align-items:center;
+    gap:5px;
 
-    min-width:58px;
+    flex:none;
 
-    padding:8px;
-
-    text-align:center;
-
-    border-radius:12px;
-
-    color:#fff;
-
-    background:linear-gradient(145deg, var(--gold), var(--gold-deep));
-
-    box-shadow:0 8px 17px rgba(169,119,42,.22);
-}
-
-.price strong{
-    display:block;
-
-    font-size:17px;
-
+    font-size:19px;
     font-weight:900;
-
-    line-height:1;
+    color:var(--gold-2);
 }
 
-.price span{
-    display:block;
+.item-price .cur{
+    display:inline-flex;
+    align-items:center;
+}
 
-    margin-top:4px;
-
-    font-size:7px;
-    font-weight:700;
-
-    opacity:.85;
+.item-price .riyal{
+    width:11px;
+    height:auto;
+    filter:drop-shadow(0 1px 3px rgba(0,0,0,.4));
 }
 
 .badge{
     position:absolute;
 
-    left:13px;
-    bottom:13px;
+    inset-inline-start:14px;
+    bottom:12px;
 
-    padding:5px 9px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.3px;
 
-    border-radius:8px;
+    padding:4px 11px;
+    border-radius:99px;
 
-    font-size:7px;
-    font-weight:800;
+    color:var(--night);
+    background:linear-gradient(135deg, var(--gold-2), var(--gold-3));
+
+    box-shadow:0 6px 16px rgba(216,181,107,.3);
 }
 
 .badge.hot{
-    background:rgba(217,104,50,.10);
+    color:#fff;
+    background:linear-gradient(135deg, #d9784a, var(--blood));
 
-    color:var(--orange);
+    box-shadow:0 6px 16px rgba(200,100,59,.35);
 }
 
-.badge.pop{
-    background:rgba(95,116,67,.10);
+/* featured item */
 
-    color:var(--green);
-}
-
-/* featured card */
-
-.featured{
+.item.featured{
     grid-column:span 2;
 
-    min-height:210px;
+    align-items:stretch;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:26px;
-
-    padding:28px;
+    padding:0;
 
     background:
-        radial-gradient(circle at 12% 120%, rgba(211,154,58,.22), transparent 46%),
-        linear-gradient(135deg, #4a3a24, #241a10);
+        radial-gradient(460px 200px at 82% -30%, rgba(216,181,107,.16), transparent 65%),
+        linear-gradient(160deg, #1d241d, var(--night-3));
 
-    color:#fff;
+    border-color:var(--line);
 
-    box-shadow:0 24px 52px rgba(36,26,16,.22);
+    box-shadow:0 22px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.04), inset 0 1px 0 rgba(255,255,255,.05);
 }
 
-.featured:hover{
-    transform:translateY(-7px);
-
-    box-shadow:0 30px 60px rgba(36,26,16,.30);
+.item.featured::before{
+    display:none;
 }
 
-.featured .item-info h3{
-    color:#fff;
+.feat-content{
+    flex:1;
 
-    font-size:22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8px;
+
+    padding:26px 28px;
 }
 
-.featured .item-info p{
-    color:rgba(255,255,255,.62);
+.feat-content .tagline{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
 
-    max-width:420px;
+    align-self:flex-start;
 
-    font-size:10px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.8px;
+
+    color:var(--gold-2);
+
+    text-transform:uppercase;
+
+    padding:6px 12px;
+    border-radius:99px;
+
+    border:1px solid var(--line);
+
+    background:rgba(216,181,107,.07);
 }
 
-.featured .price{
-    background:rgba(255,255,255,.14);
-
-    border:1px solid rgba(255,255,255,.2);
-
-    box-shadow:none;
-
-    color:var(--gold-light);
+.feat-content h3{
+    font-size:clamp(22px, 4vw, 32px);
+    font-weight:900;
+    color:var(--cream);
 }
 
-.featured-icon{
-    font-size:72px;
-
-    opacity:.95;
-
-    filter:drop-shadow(0 16px 22px rgba(0,0,0,.25));
-
-    animation:foodFloat 4s ease-in-out infinite;
+.feat-content p{
+    max-width:40ch;
+    font-size:14px;
+    color:var(--muted);
 }
 
-@keyframes foodFloat{
-    0%,100%{
-        transform:translateY(0) rotate(-4deg);
-    }
-    50%{
-        transform:translateY(-9px) rotate(4deg);
-    }
+.feat-price{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    font-size:clamp(30px, 6vw, 44px);
+    font-weight:900;
+    color:var(--gold-2);
+
+    text-shadow:0 4px 22px rgba(216,181,107,.22);
 }
 
- /* pause decorative animations while scrolling (mobile smoothness) */
-html.is-scrolling .seal,
-html.is-scrolling .featured-icon,
-html.is-scrolling .hero-badge i{
-    animation-play-state:paused;
+.feat-price .riyal{
+    width:14px;
+    height:auto;
 }
 
-/* drinks tweak */
+.feat-art{
+    width:190px;
+    flex:none;
 
-.drinks .item-info h3{
-    color:var(--green-deep);
+    display:grid;
+    place-items:center;
+
+    position:relative;
+}
+
+.feat-art::after{
+    content:"";
+    position:absolute;
+    inset:26%;
+    border-radius:50%;
+
+    background:radial-gradient(circle, rgba(216,181,107,.28), transparent 65%);
+
+    z-index:-1;
+}
+
+.feat-art img{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+
+    filter:drop-shadow(0 12px 24px rgba(0,0,0,.5));
+
+    animation:float 4.5s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{ transform:translateY(0) rotate(-3deg); }
+    50%{ transform:translateY(-8px) rotate(3deg); }
 }
 
 /* ---------- info ---------- */
 
-.info-box{
-    width:min(900px, calc(100% - 34px));
+.info{
+    position:relative;
+    z-index:1;
 
-    margin:0 auto 70px;
+    width:min(640px, 100%);
+    margin:54px auto 10px;
 
-    padding:28px;
-
-    border-radius:26px;
+    padding:34px 30px;
 
     text-align:center;
 
-    background:
-        linear-gradient(135deg, rgba(211,154,58,.08), rgba(95,116,67,.06));
+    border-radius:18px;
 
-    border:1px solid rgba(95,116,67,.12);
+    background:linear-gradient(160deg, var(--panel), var(--night-3));
+
+    border:1px solid var(--line);
+
+    box-shadow:0 20px 46px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.03);
 }
 
-.info-box strong{
+.info strong{
     display:block;
-
-    font-size:17px;
-
+    font-size:18px;
     font-weight:900;
+    color:var(--gold-2);
 
-    color:var(--brown-deep);
-
-    margin-bottom:9px;
+    margin-bottom:10px;
 }
 
-.info-box p{
-    max-width:560px;
-
-    margin:auto;
-
-    color:var(--muted-2);
-
-    font-size:10px;
-
-    line-height:2;
+.info p{
+    font-size:13px;
+    color:var(--muted);
 }
 
 /* ---------- footer ---------- */
 
-footer{
-    width:min(1100px, calc(100% - 34px));
-
-    margin:auto;
-
-    padding:26px 0 96px;
-
-    border-top:1px solid rgba(95,116,67,.12);
+.footer{
+    position:relative;
+    z-index:1;
 
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-
     flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:8px 18px;
 
-    gap:10px;
+    padding:46px 0 130px;
 
+    text-align:center;
+
+    font-size:12px;
     color:var(--muted-2);
-
-    font-size:9px;
-    font-weight:600;
 }
 
-footer strong{
-    color:var(--gold-deep);
-
-    font-size:13px;
-    font-weight:900;
-}
-
-footer a{
-    color:var(--gold-deep);
-
-    text-decoration:none;
-
+.footer strong{
+    color:var(--cream);
     font-weight:800;
 }
 
-footer a:hover{
+.footer a{
+    color:var(--gold);
+}
+
+.footer a:hover{
     text-decoration:underline;
+}
+
+.footer .dot{
+    color:var(--gold-dim);
 }
 
 /* ---------- order dock ---------- */
 
-.order-dock{
+.dock{
     position:fixed;
     bottom:14px;
     left:50%;
 
     transform:translateX(-50%);
 
-    z-index:85;
+    z-index:80;
 
     display:flex;
     align-items:center;
+    gap:8px;
 
-    gap:6px;
+    padding:9px;
 
-    padding:8px;
+    border-radius:99px;
 
-    border-radius:100px;
+    background:linear-gradient(145deg, #1a2320, #0f1512);
 
-    background:rgba(255,253,246,.94);
+    border:1px solid var(--line);
 
-    border:1px solid var(--border);
-
-    border-radius:100px;
-
-    box-shadow:0 18px 46px rgba(36,26,16,.18);
+    box-shadow:0 20px 50px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05);
 }
 
-.order-dock .dock-label{
-    padding:0 8px 0 4px;
+.dock-label{
+    padding-inline:12px 6px;
 
-    color:var(--brown-deep);
-
-    font-size:11px;
-    font-weight:800;
-
-    white-space:nowrap;
+    font-size:12px;
+    font-weight:700;
+    color:var(--cream);
 }
 
 .dock-btn{
+    width:42px;
+    height:42px;
+
     display:grid;
     place-items:center;
 
-    width:44px;
-    height:44px;
-
     border-radius:50%;
 
-    color:#fff;
-
-    text-decoration:none;
-
-    transition:.3s ease;
-}
-
-.dock-btn .icon{
-    width:20px;
-    height:20px;
+    transition:transform .2s ease, filter .2s ease;
 }
 
 .dock-wa{
-    background:linear-gradient(135deg, var(--green), var(--green-deep));
-
-    box-shadow:0 10px 22px rgba(95,116,67,.34);
+    background:linear-gradient(135deg, #5bb982, #2f8f5b);
+    box-shadow:0 8px 20px rgba(63,178,110,.3);
 }
 
 .dock-tel{
-    background:linear-gradient(135deg, #e8844b, var(--orange));
-
-    box-shadow:0 10px 22px rgba(217,104,50,.30);
+    background:linear-gradient(135deg, var(--gold-2), var(--gold-3));
+    box-shadow:0 8px 20px rgba(216,181,107,.3);
 }
 
 .dock-btn:hover{
-    transform:translateY(-3px) scale(1.05);
+    transform:translateY(-2px) scale(1.04);
+    filter:brightness(1.06);
 }
 
-/* ---------- responsive ---------- */
-
-@media (max-width: 900px){
-
-    .items{
-        grid-template-columns:repeat(2, 1fr);
-    }
-
-    .featured{
-        grid-column:span 2;
-    }
-
-    .section-line{
-        display:none;
-    }
+.dock-btn .icon{
+    width:19px;
+    height:19px;
 }
 
-@media (max-width: 640px){
-
-    header{
-        width:calc(100% - 20px);
-
-        top:10px;
-
-        padding:10px;
-    }
-
-    .brand-mark{
-        width:41px;
-        height:41px;
-
-        border-radius:12px;
-    }
-
-    .brand-text strong{
-        font-size:14px;
-    }
-
-    .brand-text span{
-        font-size:8px;
-    }
-
-    .header-link{
-        display:none;
-    }
-
-    .order-btn{
-        padding:9px 11px;
-
-        font-size:9px;
-    }
-
-    .hero{
-        padding:54px 0 30px;
-    }
-
-    .hero h1{
-        font-size:52px;
-    }
-
-    .hero .sub{
-        font-size:10px;
-    }
-
-    .hero-split .seal{
-        font-size:26px;
-    }
-
-    .hero-split small{
-        font-size:9px;
-    }
-
-    .categories-wrap{
-        top:78px;
-
-        margin-bottom:26px;
-    }
-
-    .categories{
-        width:calc(100% - 20px);
-
-        border-radius:15px;
-    }
-
-    .category-btn{
-        padding:9px 13px;
-    }
-
-    .menu{
-        width:calc(100% - 20px);
-    }
-
-    .menu-section{
-        margin-bottom:48px;
-    }
-
-    .section-heading{
-        margin-bottom:16px;
-    }
-
-    .section-heading h2{
-        font-size:20px;
-    }
-
-    .section-heading p{
-        font-size:8px;
-    }
-
-    .section-icon{
-        width:40px;
-        height:40px;
-
-        border-radius:12px;
-
-        font-size:19px;
-    }
-
-    .section-count{
-        display:none;
-    }
-
-    .items{
-        grid-template-columns:1fr;
-
-        gap:10px;
-    }
-
-    .item,
-    .featured{
-        grid-column:span 1;
-
-        min-height:136px;
-
-        border-radius:18px;
-
-        padding:17px;
-    }
-
-    .featured{
-        min-height:190px;
-    }
-
-    .featured-icon{
-        font-size:52px;
-    }
-
-    .featured .item-info h3{
-        font-size:18px;
-    }
-
-    .featured .item-info p{
-        font-size:9px;
-    }
-
-    .item-info h3{
-        font-size:13px;
-    }
-
-    .item-info p{
-        font-size:8px;
-    }
-
-    .price{
-        min-width:52px;
-        padding:7px;
-    }
-
-    .price strong{
-        font-size:15px;
-    }
-
-    .info-box{
-        width:calc(100% - 20px);
-
-        padding:22px 17px;
-
-        margin-bottom:50px;
-    }
-
-    .info-box strong{
-        font-size:14px;
-    }
-
-    .info-box p{
-        font-size:9px;
-    }
-
-    footer{
-        width:calc(100% - 20px);
-
-        flex-direction:column;
-
-        gap:8px;
-
-        text-align:center;
-
-        padding-bottom:100px;
-    }
-
-    .order-dock{
-        bottom:10px;
-    }
-
-    .dock-label{
-        font-size:10px;
-    }
+.is-down{
+    transform:scale(.92);
 }
 
-@media (min-width: 641px){
+/* ---------- reveal ---------- */
 
-    .hero-split{
-        display:none;
-    }
+.section,
+.item,
+.info,
+.footer{
+    content-visibility:auto;
+    contain-intrinsic-size:600px;
+}
+
+.no-js .item{
+    opacity:1;
+    transform:none;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -1400,54 +1045,62 @@ footer a:hover{
         transition-duration:.01ms !important;
     }
 
-    .item,
-    .menu-section{
+    .item{
         opacity:1;
         transform:none;
     }
+}
 
-    .progress-fill{
+/* ---------- responsive ---------- */
+
+@media (max-width:760px){
+
+    .items{
+        grid-template-columns:1fr;
+    }
+
+    .item.featured{
+        grid-column:span 1;
+        flex-direction:column;
+        align-items:flex-start;
+        text-align:center;
+    }
+
+    .feat-content{
+        align-items:center;
+    }
+
+    .feat-content p{
+        max-width:none;
+    }
+
+    .feat-art{
+        width:100%;
+        height:110px;
+    }
+
+    .topbar-inner{
+        padding:10px 0;
+    }
+
+    .brand-text span{
         display:none;
     }
-}
 
-.is-down{
-    scale:.94;
-}
-
-/* ---- item visuals + currency ---- */
-.item-img{
-    width:46px;
-    height:46px;
-    flex:none;
-    object-fit:contain;
-    filter:drop-shadow(0 6px 10px rgba(58,44,28,.16));
-}
-
-.featured-icon{
-    width:72px;
-    height:72px;
-    object-fit:contain;
-}
-
-.price .riyal{
-    width:11px;
-    height:12px;
-    object-fit:contain;
-    margin-top:3px;
-    opacity:.95;
-}
-
-@media (max-width:640px){
-
-    .item-img{
-        width:40px;
-        height:40px;
+    .header-link{
+        display:none;
     }
 
-    .featured-icon{
-        width:56px;
-        height:56px;
+    .hero{
+        padding-top:120px;
+    }
+
+    .cats{
+        top:62px;
+    }
+
+    .dock-label{
+        display:none;
     }
 }
 </style>
@@ -1456,63 +1109,62 @@ footer a:hover{
 
 <body>
 
-<div class="progress" aria-hidden="true">
-    <div class="progress-fill"></div>
-</div>
+<!-- ================= TOP BAR ================= -->
 
-<div class="bg-shape one"></div>
-<div class="bg-shape two"></div>
-<div class="noise"></div>
+<div class="topbar">
 
+    <div class="shell topbar-inner">
 
-<!-- ================= HEADER ================= -->
+        <a href="index.html" class="brand">
 
-<header>
+            <div class="brand-mark">
+                <img src="assets/images/wrap.svg" alt="" width="22" height="22">
+            </div>
 
-    <a href="index.html" class="brand">
+            <div class="brand-text">
+                <strong>حلب الشهباء</strong>
+                <span>فلافل وشاورما على أصولها</span>
+            </div>
 
-        <div class="brand-mark">
-            <img src="assets/images/wrap.svg" alt="" width="22" height="22">
-        </div>
-
-        <div class="brand-text">
-            <strong>حلب الشهباء</strong>
-            <span>فلافل وشاورما على أصولها</span>
-        </div>
-
-    </a>
-
-
-    <div class="header-actions">
-
-        <a href="index.html" class="header-link">
-            الرئيسية
         </a>
 
-        <a href="https://wa.me/98548471318" target="_blank" rel="noopener" class="order-btn">
-            <img class="icon" src="assets/icons/whatsapp-white.svg" alt="" width="15" height="15">
-            اطلب الآن
-        </a>
+
+        <div class="header-actions">
+
+            <a href="index.html" class="header-link">
+                الرئيسية
+            </a>
+
+            <a href="https://wa.me/98548471318" target="_blank" rel="noopener" class="order-btn">
+                <img class="icon" src="assets/icons/whatsapp-white.svg" alt="" width="15" height="15">
+                اطلب الآن
+            </a>
+
+        </div>
 
     </div>
 
-</header>
+</div>
 
 
 <!-- ================= HERO ================= -->
 
-<section class="hero">
+<section class="hero shell">
 
-    <div class="hero-badge">
+    <span class="kicker">
         <i></i>
         أهلًا وسهلًا... حيّاكم الله
-    </div>
+        <i></i>
+    </span>
 
 
     <h1>
-        منيو
+        المنيو
         <span>حلب الشهباء</span>
     </h1>
+
+
+    <div class="rule"></div>
 
 
     <p class="sub">
@@ -1520,20 +1172,6 @@ footer a:hover{
         كل اللي تحبه في مكان واحد،
         بخلطات حلبية <b>على أصولها</b>.
     </p>
-
-
-    <div class="hero-split" aria-hidden="true">
-
-        <span class="seal">🕌</span>
-
-        <small>
-            الشهباء، مدينة الأصالة...
-            نقدّم لك منها أطيب ما عندها.
-        </small>
-
-        <span class="seal">🥙</span>
-
-    </div>
 
 
     <div class="search-box">
@@ -1551,61 +1189,58 @@ footer a:hover{
 
 <!-- ================= CATEGORIES ================= -->
 
-<div class="categories-wrap">
+<nav class="cats">
 
-    <div class="categories">
+    <div class="shell cats-inner">
 
-        <button class="category-btn active" data-target="shawarma">
+        <button class="cat-btn active" data-target="shawarma">
             <span class="em">🥙</span> الشاورما
         </button>
 
-        <button class="category-btn" data-target="falafel">
+        <button class="cat-btn" data-target="falafel">
             <span class="em">🧆</span> الفلافل
         </button>
 
-        <button class="category-btn" data-target="appetizers">
+        <button class="cat-btn" data-target="appetizers">
             <span class="em">🥗</span> المقبلات
         </button>
 
-        <button class="category-btn" data-target="potato">
+        <button class="cat-btn" data-target="potato">
             <span class="em">🍟</span> البطاطس
         </button>
 
-        <button class="category-btn" data-target="drinks">
+        <button class="cat-btn" data-target="drinks">
             <span class="em">🥤</span> العصيرات
         </button>
 
-        <button class="category-btn" data-target="extras">
+        <button class="cat-btn" data-target="extras">
             <span class="em">🍽️</span> الإضافات
         </button>
 
     </div>
 
-</div>
+</nav>
 
 
 <!-- ================= MENU ================= -->
 
-<main class="menu">
+<main class="menu shell">
 
 
     <!-- ---------------- الشاورما ---------------- -->
 
-    <section class="menu-section" id="shawarma">
+    <section class="section" id="shawarma">
 
-        <div class="section-heading">
+        <div class="section-head">
 
             <div class="section-count">01</div>
 
-            <div class="section-heading-main">
-
-                <div class="section-icon">🥙</div>
-
+            <div class="section-head-main">
+                <span class="em">🥙</span>
                 <div>
                     <h2>الشاورما</h2>
                     <p>لفّة على أصولها من حلب</p>
                 </div>
-
             </div>
 
             <div class="section-line"></div>
@@ -1617,89 +1252,105 @@ footer a:hover{
 
             <article class="item featured" data-name="شاورما شامي">
 
-                <div class="item-info">
+                <div class="feat-content">
+
+                    <span class="tagline">اصنف المعرّف</span>
+
                     <h3>شاورما شامي</h3>
+
                     <p>
                         شاورما بطعمها الأصيل، متبّلة ومحمّرة على الصاج،
                         مع إضافاتنا الخاصة.
                     </p>
+
+                    <div class="feat-price">
+                        5
+                        <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="14" height="15"></span>
+                    </div>
+
                 </div>
 
-                <img class="featured-icon" src="assets/images/menu-shawarma.svg" alt="" width="72" height="72">
 
-                <div class="price">
-                    <strong>5</strong>
+                <div class="feat-art">
+                    <img src="assets/images/menu-shawarma.svg" alt="" width="120" height="120">
+                </div>
+
+            </article>
+
+
+            <article class="item" data-name="شاورما صاروخ">
+
+                <div class="item-ico">
+                    <img src="assets/images/menu-shawarma.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>شاورما صاروخ</h3>
+                    <p>حجم أكبر ونكهة أقوى</p>
+                </div>
+
+                <div class="item-price">
+                    7
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
+                </div>
+
+                <span class="badge">⭐ الأكثر طلبًا</span>
+
+            </article>
+
+
+            <article class="item" data-name="صحن شاورما عربي">
+
+                <div class="item-ico">
+                    <img src="assets/images/menu-shawarma.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>صحن شاورما عربي</h3>
+                    <p>شاورما مع البطاطس والإضافات</p>
+                </div>
+
+                <div class="item-price">
+                    25
                     <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="شاورما صاروخ" style="--i:1">
+            <article class="item" data-name="شاورما فتة">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-shawarma.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>شاورما صاروخ</h3>
-                        <p>حجم أكبر ونكهة أقوى</p>
-                    </div>
-                    <div class="price">
-                        <strong>7</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-shawarma.svg" alt="" width="32" height="32">
                 </div>
 
-                <span class="badge pop">⭐ الأكثر طلبًا</span>
+                <div class="item-body">
+                    <h3>شاورما فتّة</h3>
+                    <p>خلطة غنية بطعم مميز</p>
+                </div>
 
-            </article>
-
-
-            <article class="item" data-name="صحن شاورما عربي" style="--i:2">
-
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-shawarma.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>صحن شاورما عربي</h3>
-                        <p>شاورما مع البطاطس والإضافات</p>
-                    </div>
-                    <div class="price">
-                        <strong>25</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-price">
+                    9
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="شاورما فتة" style="--i:3">
+            <article class="item" data-name="ساندوتش شاورما">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-shawarma.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>شاورما فتّة</h3>
-                        <p>خلطة غنية بطعم مميز</p>
-                    </div>
-                    <div class="price">
-                        <strong>9</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-shawarma.svg" alt="" width="32" height="32">
                 </div>
 
-            </article>
+                <div class="item-body">
+                    <h3>ساندوتش شاورما</h3>
+                    <p>لفّة خفيفة ولذيذة</p>
+                </div>
 
-
-            <article class="item" data-name="ساندوتش شاورما" style="--i:4">
-
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-shawarma.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>ساندوتش شاورما</h3>
-                        <p>لفّة خفيفة ولذيذة</p>
-                    </div>
-                    <div class="price">
-                        <strong>6</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-price">
+                    6
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
@@ -1711,21 +1362,18 @@ footer a:hover{
 
     <!-- ---------------- الفلافل ---------------- -->
 
-    <section class="menu-section" id="falafel">
+    <section class="section" id="falafel">
 
-        <div class="section-heading">
+        <div class="section-head">
 
             <div class="section-count">02</div>
 
-            <div class="section-heading-main">
-
-                <div class="section-icon">🧆</div>
-
+            <div class="section-head-main">
+                <span class="em">🧆</span>
                 <div>
                     <h2>الفلافل</h2>
                     <p>مقرمشة من برا وطرية من جوّا</p>
                 </div>
-
             </div>
 
             <div class="section-line"></div>
@@ -1737,69 +1385,77 @@ footer a:hover{
 
             <article class="item" data-name="فلافل شامي">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-falafel.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>فلافل شامي</h3>
-                        <p>فلافل طازجة ومقرمشة</p>
-                    </div>
-                    <div class="price">
-                        <strong>5</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-falafel.svg" alt="" width="32" height="32">
                 </div>
 
-                <span class="badge pop">⭐ مميزة</span>
+                <div class="item-body">
+                    <h3>فلافل شامي</h3>
+                    <p>فلافل طازجة ومقرمشة</p>
+                </div>
+
+                <div class="item-price">
+                    5
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
+                </div>
+
+                <span class="badge">⭐ مميزة</span>
 
             </article>
 
 
-            <article class="item" data-name="فلافل مع بيض" style="--i:1">
+            <article class="item" data-name="فلافل مع بيض">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-falafel.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>فلافل مع بيض</h3>
-                        <p>فلافل وبيض مع صوص خاص</p>
-                    </div>
-                    <div class="price">
-                        <strong>6</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-falafel.svg" alt="" width="32" height="32">
                 </div>
 
-            </article>
+                <div class="item-body">
+                    <h3>فلافل مع بيض</h3>
+                    <p>فلافل وبيض مع صوص خاص</p>
+                </div>
 
-
-            <article class="item" data-name="صحن فلافل" style="--i:2">
-
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-falafel.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>صحن فلافل</h3>
-                        <p>تشكيلة فلافل مع الإضافات</p>
-                    </div>
-                    <div class="price">
-                        <strong>15</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-price">
+                    6
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="ساندوتش فلافل" style="--i:3">
+            <article class="item" data-name="صحن فلافل">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-falafel.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>ساندوتش فلافل</h3>
-                        <p>ساندوتش خفيف ومقرمش</p>
-                    </div>
-                    <div class="price">
-                        <strong>4</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-falafel.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>صحن فلافل</h3>
+                    <p>تشكيلة فلافل مع الإضافات</p>
+                </div>
+
+                <div class="item-price">
+                    15
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
+                </div>
+
+            </article>
+
+
+            <article class="item" data-name="ساندوتش فلافل">
+
+                <div class="item-ico">
+                    <img src="assets/images/menu-falafel.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>ساندوتش فلافل</h3>
+                    <p>ساندوتش خفيف ومقرمش</p>
+                </div>
+
+                <div class="item-price">
+                    4
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
@@ -1811,21 +1467,18 @@ footer a:hover{
 
     <!-- ---------------- المقبلات ---------------- -->
 
-    <section class="menu-section" id="appetizers">
+    <section class="section" id="appetizers">
 
-        <div class="section-heading">
+        <div class="section-head">
 
             <div class="section-count">03</div>
 
-            <div class="section-heading-main">
-
-                <div class="section-icon">🥗</div>
-
+            <div class="section-head-main">
+                <span class="em">🥗</span>
                 <div>
                     <h2>المقبلات</h2>
                     <p>كمل وجبتك بشيء لذيذ</p>
                 </div>
-
             </div>
 
             <div class="section-line"></div>
@@ -1837,67 +1490,75 @@ footer a:hover{
 
             <article class="item" data-name="حمص">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-appetizers.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>حمص</h3>
-                        <p>حمص كريمي على طريقتنا</p>
-                    </div>
-                    <div class="price">
-                        <strong>6</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-appetizers.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>حمص</h3>
+                    <p>حمص كريمي على طريقتنا</p>
+                </div>
+
+                <div class="item-price">
+                    6
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="متبل" style="--i:1">
+            <article class="item" data-name="متبل">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-appetizers.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>متبل</h3>
-                        <p>متبل باذنجان بنكهة مدخنة</p>
-                    </div>
-                    <div class="price">
-                        <strong>7</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-appetizers.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>متبل</h3>
+                    <p>متبل باذنجان بنكهة مدخنة</p>
+                </div>
+
+                <div class="item-price">
+                    7
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="مخلل مشكل" style="--i:2">
+            <article class="item" data-name="مخلل مشكل">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-appetizers.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>مخلل مشكل</h3>
-                        <p>تشكيلة مخللات متنوعة</p>
-                    </div>
-                    <div class="price">
-                        <strong>5</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-appetizers.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>مخلل مشكل</h3>
+                    <p>تشكيلة مخللات متنوعة</p>
+                </div>
+
+                <div class="item-price">
+                    5
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="ورق عنب" style="--i:3">
+            <article class="item" data-name="ورق عنب">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-appetizers.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>ورق عنب</h3>
-                        <p>طازج ومجهز يوميًا</p>
-                    </div>
-                    <div class="price">
-                        <strong>10</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-appetizers.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>ورق عنب</h3>
+                    <p>طازج ومجهز يوميًا</p>
+                </div>
+
+                <div class="item-price">
+                    10
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
@@ -1909,21 +1570,18 @@ footer a:hover{
 
     <!-- ---------------- البطاطس ---------------- -->
 
-    <section class="menu-section" id="potato">
+    <section class="section" id="potato">
 
-        <div class="section-heading">
+        <div class="section-head">
 
             <div class="section-count">04</div>
 
-            <div class="section-heading-main">
-
-                <div class="section-icon">🍟</div>
-
+            <div class="section-head-main">
+                <span class="em">🍟</span>
                 <div>
                     <h2>البطاطس</h2>
                     <p>مقرمشة وتطلع حارة</p>
                 </div>
-
             </div>
 
             <div class="section-line"></div>
@@ -1935,67 +1593,75 @@ footer a:hover{
 
             <article class="item" data-name="بطاطس صغير">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-fries.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>بطاطس صغير</h3>
-                        <p>بطاطس مقرمشة</p>
-                    </div>
-                    <div class="price">
-                        <strong>6</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-fries.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>بطاطس صغير</h3>
+                    <p>بطاطس مقرمشة</p>
+                </div>
+
+                <div class="item-price">
+                    6
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="بطاطس وسط" style="--i:1">
+            <article class="item" data-name="بطاطس وسط">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-fries.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>بطاطس وسط</h3>
-                        <p>حجم وسط ومقرمش</p>
-                    </div>
-                    <div class="price">
-                        <strong>8</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-fries.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>بطاطس وسط</h3>
+                    <p>حجم وسط ومقرمش</p>
+                </div>
+
+                <div class="item-price">
+                    8
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="بطاطس كبير" style="--i:2">
+            <article class="item" data-name="بطاطس كبير">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-fries.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>بطاطس كبير</h3>
-                        <p>للّي يحب البطاطس زيادة</p>
-                    </div>
-                    <div class="price">
-                        <strong>11</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-fries.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>بطاطس كبير</h3>
+                    <p>للّي يحب البطاطس زيادة</p>
+                </div>
+
+                <div class="item-price">
+                    11
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="كونكريت بطاطس" style="--i:3">
+            <article class="item" data-name="كونكريت بطاطس">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-fries.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>كونكريت بطاطس</h3>
-                        <p>بطاطس مع صوصاتنا الخاصة</p>
-                    </div>
-                    <div class="price">
-                        <strong>11</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-fries.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>كونكريت بطاطس</h3>
+                    <p>بطاطس مع صوصاتنا الخاصة</p>
+                </div>
+
+                <div class="item-price">
+                    11
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
                 <span class="badge hot">🔥 جديد</span>
@@ -2009,21 +1675,18 @@ footer a:hover{
 
     <!-- ---------------- العصيرات ---------------- -->
 
-    <section class="menu-section drinks" id="drinks">
+    <section class="section" id="drinks">
 
-        <div class="section-heading">
+        <div class="section-head">
 
             <div class="section-count">05</div>
 
-            <div class="section-heading-main">
-
-                <div class="section-icon">🥤</div>
-
+            <div class="section-head-main">
+                <span class="em">🥤</span>
                 <div>
                     <h2>العصيرات والمشروبات</h2>
                     <p>باردة ومنعشة</p>
                 </div>
-
             </div>
 
             <div class="section-line"></div>
@@ -2035,101 +1698,113 @@ footer a:hover{
 
             <article class="item" data-name="عصير منجا صغير">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-drink.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>عصير منجا صغير</h3>
-                        <p>عصير طازج</p>
-                    </div>
-                    <div class="price">
-                        <strong>5</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-drink.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>عصير منجا صغير</h3>
+                    <p>عصير طازج</p>
+                </div>
+
+                <div class="item-price">
+                    5
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="عصير منجا وسط" style="--i:1">
+            <article class="item" data-name="عصير منجا وسط">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-drink.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>عصير منجا وسط</h3>
-                        <p>منعش وطازج</p>
-                    </div>
-                    <div class="price">
-                        <strong>7</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-drink.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>عصير منجا وسط</h3>
+                    <p>منعش وطازج</p>
+                </div>
+
+                <div class="item-price">
+                    7
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="عصير منجا كبير" style="--i:2">
+            <article class="item" data-name="عصير منجا كبير">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-drink.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>عصير منجا كبير</h3>
-                        <p>حجم كبير</p>
-                    </div>
-                    <div class="price">
-                        <strong>9</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-drink.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>عصير منجا كبير</h3>
+                    <p>حجم كبير</p>
+                </div>
+
+                <div class="item-price">
+                    9
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="عصير رمان" style="--i:3">
+            <article class="item" data-name="عصير رمان">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-drink.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>عصير رمان</h3>
-                        <p>نكهة طبيعية ومنعشة</p>
-                    </div>
-                    <div class="price">
-                        <strong>7</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-drink.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>عصير رمان</h3>
+                    <p>نكهة طبيعية ومنعشة</p>
+                </div>
+
+                <div class="item-price">
+                    7
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="شاي" style="--i:4">
+            <article class="item" data-name="شاي">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-drink.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>شاي</h3>
-                        <p>شاي ساخن</p>
-                    </div>
-                    <div class="price">
-                        <strong>2</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-drink.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>شاي</h3>
+                    <p>شاي ساخن</p>
+                </div>
+
+                <div class="item-price">
+                    2
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="ماء" style="--i:5">
+            <article class="item" data-name="ماء">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-drink.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>ماء</h3>
-                        <p>مياه معدنية</p>
-                    </div>
-                    <div class="price">
-                        <strong>1</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-drink.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>ماء</h3>
+                    <p>مياه معدنية</p>
+                </div>
+
+                <div class="item-price">
+                    1
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
@@ -2141,21 +1816,18 @@ footer a:hover{
 
     <!-- ---------------- الإضافات ---------------- -->
 
-    <section class="menu-section" id="extras">
+    <section class="section" id="extras">
 
-        <div class="section-heading">
+        <div class="section-head">
 
             <div class="section-count">06</div>
 
-            <div class="section-heading-main">
-
-                <div class="section-icon">🍽️</div>
-
+            <div class="section-head-main">
+                <span class="em">🍽️</span>
                 <div>
                     <h2>الإضافات</h2>
                     <p>زوّدها مثل ما تحب</p>
                 </div>
-
             </div>
 
             <div class="section-line"></div>
@@ -2167,50 +1839,56 @@ footer a:hover{
 
             <article class="item" data-name="جبنة">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-extras.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>جبنة</h3>
-                        <p>إضافة جبنة</p>
-                    </div>
-                    <div class="price">
-                        <strong>2</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-extras.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>جبنة</h3>
+                    <p>إضافة جبنة</p>
+                </div>
+
+                <div class="item-price">
+                    2
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="بيض" style="--i:1">
+            <article class="item" data-name="بيض">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-extras.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>بيض</h3>
-                        <p>إضافة بيض</p>
-                    </div>
-                    <div class="price">
-                        <strong>2</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-extras.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>بيض</h3>
+                    <p>إضافة بيض</p>
+                </div>
+
+                <div class="item-price">
+                    2
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
 
 
-            <article class="item" data-name="صوص خاص" style="--i:2">
+            <article class="item" data-name="صوص خاص">
 
-                <div class="item-top">
-                    <img class="item-img" src="assets/images/menu-extras.svg" alt="" width="46" height="46">
-                    <div class="item-info">
-                        <h3>صوص خاص</h3>
-                        <p>صوص من اختيارك</p>
-                    </div>
-                    <div class="price">
-                        <strong>1</strong>
-                        <span class="cur"><img class="riyal" src="assets/icons/riyal-white.svg" alt="ر.س" width="11" height="12"></span>
-                    </div>
+                <div class="item-ico">
+                    <img src="assets/images/menu-extras.svg" alt="" width="32" height="32">
+                </div>
+
+                <div class="item-body">
+                    <h3>صوص خاص</h3>
+                    <p>صوص من اختيارك</p>
+                </div>
+
+                <div class="item-price">
+                    1
+                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
                 </div>
 
             </article>
@@ -2224,7 +1902,7 @@ footer a:hover{
 
 <!-- ================= INFO ================= -->
 
-<div class="info-box">
+<div class="info shell">
 
     <strong>🤍 شكرًا لاختياركم حلب الشهباء</strong>
 
@@ -2238,11 +1916,15 @@ footer a:hover{
 
 <!-- ================= FOOTER ================= -->
 
-<footer>
+<footer class="footer shell">
 
     <div>© 2026</div>
 
+    <span class="dot">✦</span>
+
     <strong>حلب الشهباء — فلافل وشاورما</strong>
+
+    <span class="dot">✦</span>
 
     <div>
         <a href="index.html">العودة للرئيسية</a> · بالعافية ❤️
@@ -2253,16 +1935,16 @@ footer a:hover{
 
 <!-- ================= ORDER DOCK ================= -->
 
-<div class="order-dock" aria-label="اطلب الآن">
+<div class="dock" aria-label="اطلب الآن">
 
     <span class="dock-label">اطلب الآن</span>
 
     <a href="https://wa.me/98548471318" target="_blank" rel="noopener" class="dock-btn dock-wa" aria-label="واتساب">
-        <img class="icon" src="assets/icons/whatsapp-white.svg" alt="" width="20" height="20">
+        <img class="icon" src="assets/icons/whatsapp-white.svg" alt="" width="19" height="19">
     </a>
 
     <a href="tel:+98548471318" class="dock-btn dock-tel" aria-label="اتصال">
-        <img class="icon" src="assets/icons/phone-white.svg" alt="" width="20" height="20">
+        <img class="icon" src="assets/icons/phone-white.svg" alt="" width="19" height="19">
     </a>
 
 </div>
@@ -2282,10 +1964,10 @@ const io = new IntersectionObserver(
             }
         }
     },
-    { threshold: 0.12 }
+    { threshold: 0.1 }
 );
 
-document.querySelectorAll(".menu-section, .item").forEach((el) => io.observe(el));
+document.querySelectorAll(".section, .item").forEach((el) => io.observe(el));
 
 
 /* ---------- search ---------- */
@@ -2304,7 +1986,7 @@ search.addEventListener("input", () => {
         const visible = name.includes(value) || text.includes(value);
         item.style.display = visible ? "" : "none";
         if (visible && value) item.animate(
-            [{ opacity: .4, transform: "scale(.98)" }, { opacity: 1, transform: "scale(1)" }],
+            [{ opacity: .5, transform: "scale(.97)" }, { opacity: 1, transform: "scale(1)" }],
             { duration: 220, easing: "ease-out" }
         );
     });
@@ -2324,8 +2006,8 @@ document.addEventListener("keydown", (e) => {
 
 /* ---------- category navigation ---------- */
 
-const buttons = document.querySelectorAll(".category-btn");
-const sections = document.querySelectorAll(".menu-section");
+const buttons = document.querySelectorAll(".cat-btn");
+const sections = document.querySelectorAll(".section");
 
 const setActive = (id) => {
     buttons.forEach((b) => b.classList.toggle("active", b.dataset.target === id));
@@ -2347,19 +2029,19 @@ const spy = new IntersectionObserver(
             if (entry.isIntersecting) setActive(entry.target.id);
         }
     },
-    { threshold: 0.2, rootMargin: "-30% 0px -55% 0px" }
+    { threshold: 0.15, rootMargin: "-30% 0px -55% 0px" }
 );
 
 sections.forEach((s) => spy.observe(s));
 
 
-/* ---------- header + press feedback ---------- */
+/* ---------- topbar + press feedback ---------- */
 
-const header = document.querySelector("header");
+const topbar = document.querySelector(".topbar");
 
 window.addEventListener(
     "scroll",
-    () => header.classList.toggle("is-scrolled", window.scrollY > 30),
+    () => topbar.classList.toggle("is-scrolled", window.scrollY > 20),
     { passive: true }
 );
 
