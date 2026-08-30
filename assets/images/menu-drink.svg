@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- عصير منجا -->
+  <path d="M22 14c0-3 4-3 4 0l2 8" stroke="#e8572b" stroke-width="3.4" stroke-linecap="round" transform="rotate(12 24 18)"/>
+  <rect x="24" y="6" width="16" height="3" rx="1.5" fill="#e8572b" transform="rotate(12 32 7)"/>
+  <path d="M14 24h36c-2 24-6 32-18 32-12 0-16-8-18-32z" fill="#f6e7c9"/>
+  <path d="M18 36h28c-2 17-5 20-14 20-9 0-12-3-14-20z" fill="#f0a63a"/>
+  <path d="M28 36h8v20h-8z" fill="#e8932b" opacity=".6"/>
+  <path d="M42 12l5 -3 M42 12l-6-3" stroke="#d9a262" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="46" cy="8" r="3.2" fill="#e8932b"/>
+  <circle cx="50" cy="4" r="2.2" fill="#e8932b"/>
+</svg>

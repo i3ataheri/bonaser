@@ -461,6 +461,37 @@ h1{
     color:var(--orange);
 }
 
+.btn-menu{
+    color:var(--orange);
+
+    background:rgba(255,255,255,.55);
+
+    border:1px solid rgba(217,104,50,.28);
+}
+
+.btn-menu .icon{
+    width:15px;
+    height:15px;
+}
+
+.btn-menu:hover{
+    transform:translateY(-4px);
+
+    color:#fff;
+
+    border-color:transparent;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--orange-light),
+            var(--orange)
+        );
+
+    box-shadow:
+        0 18px 38px rgba(217,104,50,.24);
+}
+
 
 /* =========================================
    HERO CARD

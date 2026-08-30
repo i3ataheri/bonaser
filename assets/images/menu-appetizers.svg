@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- مقبلات — صحن حمص -->
+  <ellipse cx="32" cy="46" rx="24" ry="8" fill="#efe3cb"/>
+  <ellipse cx="32" cy="45" rx="21" ry="6.5" fill="#faf4e6"/>
+  <ellipse cx="32" cy="36" rx="16" ry="8" fill="#e6cd9e"/>
+  <ellipse cx="32" cy="36.5" rx="12" ry="6" fill="#e9d3a6"/>
+  <circle cx="27" cy="35" r="2.4" fill="#d9b06b"/>
+  <circle cx="36" cy="37" r="1.7" fill="#d9b06b"/>
+  <circle cx="30" cy="39" r="1.4" fill="#d9b06b"/>
+  <circle cx="32" cy="30.5" r="3" fill="#5f7443"/>
+  <circle cx="32" cy="30.5" r="1.2" fill="#c24d2d"/>
+  <path d="M14 22c2-4 6-4 8 0s6 4 8 0" stroke="#8aa050" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".7"/>
+</svg>
