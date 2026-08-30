@@ -1489,6 +1489,29 @@ footer strong{
     }
 }
 
+@media(pointer:coarse), (hover:none), (max-width:800px){
+
+    .reveal{
+        animation:none !important;
+        opacity:1;
+        translate:0 0;
+        transition:none;
+    }
+}
+
+@media(pointer:fine) and (hover:hover){
+
+    .reveal:not(.show):not(.no-js){
+        opacity:0;
+        translate:0 26px;
+    }
+
+    .reveal.show{
+        opacity:1;
+        translate:0 0;
+    }
+}
+
 .no-js .reveal{
     opacity:1;
     translate:0 0;

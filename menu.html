@@ -93,17 +93,19 @@ body{
 
 .bg-shape{
     position:fixed;
+
     border-radius:50%;
-    filter:blur(60px);
+
     pointer-events:none;
     z-index:-1;
-    opacity:.14;
 }
 
 .bg-shape.one{
     width:420px;
     height:420px;
-    background:var(--gold);
+
+    background:radial-gradient(circle, rgba(211,154,58,.22), transparent 66%);
+
     top:-190px;
     right:-120px;
 }
@@ -111,7 +113,9 @@ body{
 .bg-shape.two{
     width:380px;
     height:380px;
-    background:var(--green);
+
+    background:radial-gradient(circle, rgba(95,116,67,.18), transparent 68%);
+
     bottom:-200px;
     left:-120px;
 }
@@ -172,9 +176,6 @@ header{
 
     border:1px solid rgba(255,255,255,.85);
     border-radius:20px;
-
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
 
     box-shadow:0 12px 38px rgba(58,44,28,.07);
 
@@ -570,10 +571,7 @@ header.is-scrolled{
 
     scrollbar-width:none;
 
-    background:rgba(255,253,246,.78);
-
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+    background:rgba(255,253,246,.9);
 
     border:1px solid rgba(255,255,255,.9);
 
@@ -814,7 +812,6 @@ header.is-scrolled{
 
 .item::after{
     content:"";
-
     position:absolute;
 
     width:110px;
@@ -822,12 +819,10 @@ header.is-scrolled{
 
     border-radius:50%;
 
-    background:rgba(211,154,58,.06);
+    background:radial-gradient(circle, rgba(211,154,58,.10), transparent 60%);
 
     left:-45px;
     bottom:-45px;
-
-    filter:blur(18px);
 
     transition:.45s ease;
 }
@@ -1003,6 +998,13 @@ header.is-scrolled{
     }
 }
 
+ /* pause decorative animations while scrolling (mobile smoothness) */
+html.is-scrolling .seal,
+html.is-scrolling .featured-icon,
+html.is-scrolling .hero-badge i{
+    animation-play-state:paused;
+}
+
 /* drinks tweak */
 
 .drinks .item-info h3{
@@ -1116,12 +1118,11 @@ footer a:hover{
 
     border-radius:100px;
 
-    background:rgba(255,253,246,.85);
+    background:rgba(255,253,246,.94);
 
     border:1px solid var(--border);
 
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
+    border-radius:100px;
 
     box-shadow:0 18px 46px rgba(36,26,16,.18);
 }
