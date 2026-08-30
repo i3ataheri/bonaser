@@ -730,15 +730,24 @@ body::after{
     filter:drop-shadow(0 1px 3px rgba(0,0,0,.4));
 }
 
+.price-stack{
+    flex:none;
+
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:6px;
+}
+
 .badge{
-    position:absolute;
+    display:inline-flex;
+    align-items:center;
+    gap:3px;
 
-    bottom:8px;
-    inset-inline-start:78px;
-
-    font-size:11px;
+    font-size:10px;
     font-weight:700;
     letter-spacing:.3px;
+    white-space:nowrap;
 
     padding:3px 10px;
     border-radius:99px;
@@ -1289,12 +1298,13 @@ body::after{
                     <p>حجم أكبر ونكهة أقوى</p>
                 </div>
 
-                <div class="item-price">
-                    7
-                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
+                <div class="price-stack">
+                    <span class="badge">⭐ الأكثر طلبًا</span>
+                    <div class="item-price">
+                        7
+                        <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
+                    </div>
                 </div>
-
-                <span class="badge">⭐ الأكثر طلبًا</span>
 
             </article>
 
@@ -1394,12 +1404,13 @@ body::after{
                     <p>فلافل طازجة ومقرمشة</p>
                 </div>
 
-                <div class="item-price">
-                    5
-                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
+                <div class="price-stack">
+                    <span class="badge">⭐ مميزة</span>
+                    <div class="item-price">
+                        5
+                        <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
+                    </div>
                 </div>
-
-                <span class="badge">⭐ مميزة</span>
 
             </article>
 
@@ -1659,12 +1670,13 @@ body::after{
                     <p>بطاطس مع صوصاتنا الخاصة</p>
                 </div>
 
-                <div class="item-price">
-                    11
-                    <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
+                <div class="price-stack">
+                    <span class="badge hot">🔥 جديد</span>
+                    <div class="item-price">
+                        11
+                        <span class="cur"><img class="riyal" src="assets/icons/riyal-gold.svg" alt="ر.س" width="11" height="12"></span>
+                    </div>
                 </div>
-
-                <span class="badge hot">🔥 جديد</span>
 
             </article>
 
