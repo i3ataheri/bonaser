@@ -1387,17 +1387,6 @@ footer strong{
     box-shadow:0 18px 45px rgba(43,33,28,.16);
 }
 
-.dock-num{
-    padding:0 8px 0 4px;
-
-    color:var(--brown);
-
-    font-size:12px;
-    font-weight:700;
-
-    white-space:nowrap;
-}
-
 .dock-btn{
     display:grid;
     place-items:center;
@@ -1709,13 +1698,6 @@ footer strong{
 
     .contact-dock{
         bottom:10px;
-    }
-}
-
-@media(max-width:420px){
-
-    .dock-num{
-        display:none;
     }
 }
 
