@@ -11,12 +11,15 @@
 
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 
-<link rel="preload" as="font" href="assets/fonts/tajawal-arabic-400.woff2" type="font/woff2" crossorigin>
-<link rel="preload" as="font" href="assets/fonts/tajawal-arabic-700.woff2" type="font/woff2" crossorigin>
-<link rel="preload" as="font" href="assets/fonts/tajawal-arabic-900.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="assets/fonts/tajawal-arabic-400.woff2" type="font/woff2">
+<link rel="preload" as="font" href="assets/fonts/tajawal-arabic-700.woff2" type="font/woff2">
+<link rel="preload" as="font" href="assets/fonts/tajawal-arabic-900.woff2" type="font/woff2">
 <link rel="stylesheet" href="assets/fonts/tajawal.css">
 
-<script>document.documentElement.classList.remove("no-js");</script>
+<script>
+document.documentElement.classList.remove("no-js");
+document.documentElement.dataset.theme = localStorage.getItem("theme") || "night";
+</script>
 
 <style>
 /* =========================================================
@@ -39,10 +42,11 @@
     --cream:#f3e9d2;
     --cream-dim:#cfc2a4;
 
-    --gold:#d8b56b;
-    --gold-2:#efd391;
-    --gold-3:#b99345;
+    --gold:#dab15f;
+    --gold-2:#f3dc92;
+    --gold-3:#b18a3f;
     --gold-dim:#8a7037;
+    --gold-glow:rgba(218,177,95,.16);
 
     --green:#4f6b3d;
     --green-2:#6c8d54;
@@ -56,6 +60,71 @@
     --txt-2:#c6bca2;
 
     --serif:"Tajawal", system-ui, "Segoe UI", Tahoma, sans-serif;
+
+    --on-gold:#161009;
+    --gold-soft:rgba(216,181,107,.06);
+    --gold-edge:rgba(255,225,160,.5);
+    --chip:rgba(255,255,255,.06);
+    --chip-strong:rgba(255,255,255,.12);
+    --bg-a:rgba(27,38,31,.9);
+    --bg-b:rgba(23,33,26,.85);
+    --grid:rgba(201,168,96,.035);
+    --vignette:rgba(4,6,5,.7);
+    --bar-top:rgba(10,14,12,.92);
+    --bar-bottom:rgba(10,14,12,.72);
+    --bar-solid:rgba(10,14,12,.96);
+    --cats-top:rgba(14,19,16,.9);
+    --cats-bottom:rgba(14,19,16,.55);
+}
+
+/* ---------- day theme ---------- */
+
+:root[data-theme="day"]{
+    --night:#f3ebd8;
+    --night-2:#eae0c8;
+    --night-3:#faf3e3;
+
+    --panel:#fff9ee;
+    --panel-2:#f6edd8;
+    --panel-3:#fbf3e0;
+
+    --line:rgba(140,105,40,.22);
+    --line-soft:rgba(140,105,40,.12);
+
+    --cream:#352f22;
+    --cream-dim:#5a5240;
+
+    --gold:#b58a3f;
+    --gold-2:#a3762b;
+    --gold-3:#8f6926;
+    --gold-dim:#a07f3c;
+    --gold-glow:rgba(160,120,45,.14);
+
+    --green:#60794b;
+    --green-2:#7c9b5f;
+
+    --blood:#c96139;
+
+    --muted:#6e6755;
+    --muted-2:#8e856e;
+
+    --txt:#2a2519;
+    --txt-2:#5a523e;
+
+    --on-gold:#fffaf0;
+    --gold-soft:rgba(175,135,50,.1);
+    --gold-edge:rgba(140,105,40,.4);
+    --chip:rgba(140,105,40,.08);
+    --chip-strong:rgba(140,105,40,.15);
+    --bg-a:rgba(255,224,168,.45);
+    --bg-b:rgba(236,214,170,.4);
+    --grid:rgba(140,105,40,.06);
+    --vignette:rgba(90,70,40,.14);
+    --bar-top:rgba(249,243,230,.92);
+    --bar-bottom:rgba(249,243,230,.72);
+    --bar-solid:rgba(249,243,230,.96);
+    --cats-top:rgba(249,243,230,.92);
+    --cats-bottom:rgba(249,243,230,.6);
 }
 
 *{
@@ -81,8 +150,8 @@ body{
     font-weight:400;
 
     background:
-        radial-gradient(1200px 700px at 85% -10%, rgba(27,38,31,.9), transparent 60%),
-        radial-gradient(900px 600px at -10% 110%, rgba(23,33,26,.85), transparent 60%),
+        radial-gradient(1200px 700px at 85% -10%, var(--bg-a), transparent 60%),
+        radial-gradient(900px 600px at -10% 110%, var(--bg-b), transparent 60%),
         var(--night);
 
     color:var(--txt);
@@ -105,7 +174,7 @@ b{ font-weight:800; }
 
 ::selection{
     background:var(--gold);
-    color:var(--night);
+    color:var(--on-gold);
 }
 
 body::-webkit-scrollbar{
@@ -134,8 +203,8 @@ body::before{
     z-index:0;
 
     background:
-        linear-gradient(rgba(201,168,96,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,96,.035) 1px, transparent 1px);
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
     background-size:52px 52px;
 
     pointer-events:none;
@@ -147,9 +216,32 @@ body::after{
     inset:0;
     z-index:0;
 
-    background:radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(4,6,5,.7) 100%);
+    background:radial-gradient(120% 90% at 50% 40%, transparent 55%, var(--vignette) 100%);
 
     pointer-events:none;
+}
+
+/* ---------- scroll progress ---------- */
+
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    z-index:100;
+    pointer-events:none;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+
+    background:var(--gold);
+
+    box-shadow:0 0 14px rgba(216,181,107,.5), 0 0 34px rgba(216,181,107,.28);
+
+    transition:width .1s linear;
 }
 
 /* ---------- top bar ---------- */
@@ -161,18 +253,18 @@ body::after{
     right:0;
     z-index:90;
 
-    background:linear-gradient(rgba(10,14,12,.92), rgba(10,14,12,.72));
+    background:linear-gradient(var(--bar-top), var(--bar-bottom));
 
     border-bottom:1px solid var(--line-soft);
 
-    backdrop-filter:none;
-    -webkit-backdrop-filter:none;
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
 
     transition:box-shadow .3s ease, background .3s ease;
 }
 
 .topbar.is-scrolled{
-    background:rgba(10,14,12,.96);
+    background:var(--bar-solid);
     box-shadow:0 14px 34px rgba(0,0,0,.45);
 }
 
@@ -201,7 +293,7 @@ body::after{
 
     border-radius:12px;
 
-    background:linear-gradient(145deg, #2a3a2c, #18221a);
+    background:linear-gradient(145deg, var(--panel-2), var(--night-3));
 
     border:1px solid var(--line);
 
@@ -251,7 +343,38 @@ body::after{
 
 .header-link:hover{
     color:var(--gold-2);
-    background:rgba(216,181,107,.08);
+    background:var(--gold-soft);
+}
+
+.theme-btn{
+    width:38px;
+    height:38px;
+    flex:none;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:50%;
+
+    font-size:17px;
+    line-height:1;
+
+    color:var(--gold-2);
+
+    background:var(--panel);
+
+    border:1px solid var(--line);
+
+    cursor:pointer;
+
+    transition:transform .25s ease, background .25s ease, border-color .25s ease;
+}
+
+.theme-btn:hover{
+    color:var(--gold);
+    background:var(--panel-2);
+    border-color:var(--gold-dim);
+    transform:translateY(-1px) rotate(8deg);
 }
 
 .order-btn{
@@ -265,20 +388,21 @@ body::after{
 
     font-size:13px;
     font-weight:700;
-    color:var(--night);
+    color:var(--on-gold);
 
-    background:linear-gradient(135deg, var(--gold-2), var(--gold) 45%, var(--gold-3));
-    border:1px solid rgba(255,225,160,.5);
+    background:var(--gold);
+    border:1px solid var(--gold-edge);
 
     box-shadow:0 8px 22px rgba(216,181,107,.28), inset 0 1px 0 rgba(255,255,255,.35);
 
-    transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+    transition:transform .25s ease, filter .25s ease;
+
+    animation:orderBreathe 3.6s ease-in-out infinite;
 }
 
 .order-btn:hover{
     transform:translateY(-2px);
-    filter:brightness(1.06);
-    box-shadow:0 12px 28px rgba(216,181,107,.38), inset 0 1px 0 rgba(255,255,255,.35);
+    filter:brightness(1.07);
 }
 
 .order-btn .icon{
@@ -312,7 +436,7 @@ body::after{
 
     border:1px solid var(--line);
 
-    background:rgba(216,181,107,.06);
+    background:var(--gold-soft);
 
     margin-bottom:26px;
 }
@@ -325,6 +449,8 @@ body::after{
     background:var(--gold);
 
     box-shadow:0 0 10px rgba(216,181,107,.8);
+
+    animation:pulseDot 2.6s ease-in-out infinite;
 }
 
 .hero h1{
@@ -337,12 +463,9 @@ body::after{
 .hero h1 span{
     display:block;
 
-    background:linear-gradient(120deg, var(--gold-2), var(--gold) 50%, var(--gold-3));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    color:var(--gold);
 
-    filter:drop-shadow(0 4px 22px rgba(216,181,107,.18));
+    filter:drop-shadow(0 4px 18px rgba(216,181,107,.25));
 }
 
 .hero .rule{
@@ -365,6 +488,15 @@ body::after{
 .hero .sub b{
     color:var(--gold-2);
 }
+
+.hero > *{
+    animation:heroIn .8s cubic-bezier(.22,1,.36,1) both;
+}
+
+.hero h1{ animation-delay:.12s; }
+.hero .rule{ animation-delay:.2s; }
+.hero .sub{ animation-delay:.28s; }
+.hero .search-box{ animation-delay:.36s; }
 
 /* ---------- search ---------- */
 
@@ -439,7 +571,7 @@ body::after{
     font-size:13px;
     color:var(--txt-2);
 
-    background:rgba(255,255,255,.06);
+    background:var(--chip);
 
     opacity:0;
     visibility:hidden;
@@ -455,7 +587,7 @@ body::after{
 }
 
 .clear-btn:hover{
-    background:rgba(255,255,255,.12);
+    background:var(--chip-strong);
 }
 
 /* ---------- categories ---------- */
@@ -467,7 +599,10 @@ body::after{
 
     padding:16px 0 20px;
 
-    background:linear-gradient(rgba(14,19,16,.95), rgba(14,19,16,.6));
+    background:linear-gradient(var(--cats-top), var(--cats-bottom));
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
 }
 
 .cats-inner{
@@ -519,13 +654,13 @@ body::after{
 }
 
 .cat-btn.active{
-    color:var(--night);
+    color:var(--on-gold);
 
-    background:linear-gradient(135deg, var(--gold-2), var(--gold) 50%, var(--gold-3));
+    background:var(--gold);
 
     border-color:transparent;
 
-    box-shadow:0 8px 22px rgba(216,181,107,.3);
+    box-shadow:0 8px 22px rgba(216,181,107,.3), 0 0 0 4px var(--gold-glow);
 }
 
 /* ---------- menu sections ---------- */
@@ -566,7 +701,7 @@ body::after{
 
     border:1px solid var(--line);
 
-    background:rgba(216,181,107,.05);
+    background:var(--gold-soft);
 }
 
 .section-head-main{
@@ -630,16 +765,22 @@ body::after{
     transform:translateY(18px);
 
     transition:
-        opacity .5s ease,
-        transform .5s ease,
         border-color .3s ease,
-        box-shadow .3s ease;
+        box-shadow .3s ease,
+        transform .3s ease;
 }
 
 .item.in{
     opacity:1;
     transform:translateY(0);
+    animation:itemIn .6s cubic-bezier(.22,1,.36,1) both;
 }
+
+.items > .item:nth-child(2){ animation-delay:.07s; }
+.items > .item:nth-child(3){ animation-delay:.14s; }
+.items > .item:nth-child(4){ animation-delay:.21s; }
+.items > .item:nth-child(5){ animation-delay:.28s; }
+.items > .item:nth-child(6){ animation-delay:.35s; }
 
 .item:hover{
     border-color:var(--line);
@@ -657,7 +798,7 @@ body::after{
 
     width:3px;
 
-    background:linear-gradient(180deg, var(--gold), transparent);
+    background:var(--gold);
 
     opacity:0;
 
@@ -666,6 +807,27 @@ body::after{
 
 .item:hover::before{
     opacity:1;
+}
+
+.item::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-80%;
+    width:45%;
+    height:100%;
+
+    background:linear-gradient(100deg, transparent, rgba(255,255,255,.1), transparent);
+
+    transform:skewX(-18deg);
+
+    pointer-events:none;
+
+    opacity:0;
+}
+
+.item:hover::after{
+    animation:sheen .85s ease forwards;
 }
 
 .item-ico{
@@ -681,6 +843,14 @@ body::after{
     background:rgba(216,181,107,.08);
 
     border:1px solid var(--line-soft);
+
+    transition:background .3s ease, border-color .3s ease, transform .3s ease;
+}
+
+.item:hover .item-ico{
+    background:rgba(216,181,107,.14);
+    border-color:var(--line);
+    transform:scale(1.05) rotate(-2deg);
 }
 
 .item-ico img{
@@ -752,8 +922,8 @@ body::after{
     padding:3px 10px;
     border-radius:99px;
 
-    color:var(--night);
-    background:linear-gradient(135deg, var(--gold-2), var(--gold-3));
+    color:var(--on-gold);
+    background:var(--gold);
 
     box-shadow:0 6px 16px rgba(216,181,107,.3);
 }
@@ -763,6 +933,8 @@ body::after{
     background:linear-gradient(135deg, #d9784a, var(--blood));
 
     box-shadow:0 6px 16px rgba(200,100,59,.35);
+
+    animation:hotPulse 2.8s ease-in-out infinite;
 }
 
 /* featured item */
@@ -774,9 +946,7 @@ body::after{
 
     padding:0;
 
-    background:
-        radial-gradient(460px 200px at 82% -30%, rgba(216,181,107,.16), transparent 65%),
-        linear-gradient(160deg, #1d241d, var(--night-3));
+    background:linear-gradient(160deg, var(--panel-2), var(--night-3));
 
     border-color:var(--line);
 
@@ -818,7 +988,7 @@ body::after{
 
     border:1px solid var(--line);
 
-    background:rgba(216,181,107,.07);
+    background:var(--gold-soft);
 }
 
 .feat-content h3{
@@ -869,6 +1039,8 @@ body::after{
     background:radial-gradient(circle, rgba(216,181,107,.28), transparent 65%);
 
     z-index:-1;
+
+    animation:artGlow 5.5s ease-in-out infinite;
 }
 
 .feat-art img{
@@ -878,12 +1050,48 @@ body::after{
 
     filter:drop-shadow(0 12px 24px rgba(0,0,0,.5));
 
-    animation:float 4.5s ease-in-out infinite;
+    animation:float 5.5s ease-in-out infinite;
 }
 
 @keyframes float{
     0%,100%{ transform:translateY(0) rotate(-3deg); }
-    50%{ transform:translateY(-8px) rotate(3deg); }
+    50%{ transform:translateY(-9px) rotate(3.5deg); }
+}
+
+@keyframes pulseDot{
+    0%,100%{ transform:scale(1); opacity:1; box-shadow:0 0 10px rgba(216,181,107,.8); }
+    50%{ transform:scale(.65); opacity:.55; box-shadow:0 0 16px rgba(216,181,107,.95); }
+}
+
+@keyframes heroIn{
+    from{ opacity:0; transform:translateY(22px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+@keyframes itemIn{
+    from{ opacity:0; transform:translateY(24px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+@keyframes sheen{
+    0%{ left:-80%; opacity:0; }
+    15%{ opacity:1; }
+    100%{ left:140%; opacity:0; }
+}
+
+@keyframes artGlow{
+    0%,100%{ opacity:.55; }
+    50%{ opacity:1; }
+}
+
+@keyframes orderBreathe{
+    0%,100%{ box-shadow:0 8px 22px rgba(216,181,107,.28), inset 0 1px 0 rgba(255,255,255,.35); }
+    50%{ box-shadow:0 9px 32px rgba(216,181,107,.45), inset 0 1px 0 rgba(255,255,255,.35); }
+}
+
+@keyframes hotPulse{
+    0%,100%{ box-shadow:0 6px 16px rgba(200,100,59,.35); }
+    50%{ box-shadow:0 7px 26px rgba(236,120,70,.55); }
 }
 
 /* ---------- info ---------- */
@@ -978,7 +1186,7 @@ body::after{
 
     border-radius:99px;
 
-    background:linear-gradient(145deg, #1a2320, #0f1512);
+    background:linear-gradient(145deg, var(--panel), var(--night-3));
 
     border:1px solid var(--line);
 
@@ -1011,7 +1219,7 @@ body::after{
 }
 
 .dock-tel{
-    background:linear-gradient(135deg, var(--gold-2), var(--gold-3));
+    background:var(--gold);
     box-shadow:0 8px 20px rgba(216,181,107,.3);
 }
 
@@ -1118,6 +1326,13 @@ body::after{
 
 <body>
 
+<!-- ================= SCROLL PROGRESS ================= -->
+
+<div class="progress" aria-hidden="true">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+
 <!-- ================= TOP BAR ================= -->
 
 <div class="topbar">
@@ -1139,6 +1354,10 @@ body::after{
 
 
         <div class="header-actions">
+
+            <button type="button" class="theme-btn" id="themeBtn" aria-label="تبديل الوضع الليلي والنهاري">
+                <span class="theme-icon" id="themeIcon">☀️</span>
+            </button>
 
             <a href="index.html" class="header-link">
                 الرئيسية
@@ -2050,12 +2269,39 @@ sections.forEach((s) => spy.observe(s));
 /* ---------- topbar + press feedback ---------- */
 
 const topbar = document.querySelector(".topbar");
+const progressFill = document.getElementById("progressFill");
 
-window.addEventListener(
-    "scroll",
-    () => topbar.classList.toggle("is-scrolled", window.scrollY > 20),
-    { passive: true }
-);
+const updateScroll = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progressFill.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+    topbar.classList.toggle("is-scrolled", window.scrollY > 20);
+};
+
+window.addEventListener("scroll", updateScroll, { passive: true });
+updateScroll();
+
+
+/* ---------- theme toggle ---------- */
+
+const themeBtn = document.getElementById("themeBtn");
+const themeIcon = document.getElementById("themeIcon");
+const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
+const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+const applyTheme = (t) => {
+    document.documentElement.dataset.theme = t;
+    localStorage.setItem("theme", t);
+    themeIcon.textContent = t === "day" ? "🌙" : "☀️";
+    if (metaColorScheme) metaColorScheme.content = t === "day" ? "light" : "dark";
+    if (metaThemeColor) metaThemeColor.content = t === "day" ? "#f3ebd8" : "#0e1310";
+};
+
+themeBtn.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "day" ? "night" : "day";
+    applyTheme(next);
+});
+
+applyTheme(document.documentElement.dataset.theme === "day" ? "day" : "night");
 
 document.querySelectorAll(".order-btn, .dock-btn").forEach((el) => {
     el.addEventListener("pointerdown", () => el.classList.add("is-down"));
